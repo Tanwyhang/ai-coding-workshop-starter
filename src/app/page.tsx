@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type MenuItem = {
   id: string;
   name: string;
   price: number;
-  emoji: string;
+  image: string;
   desc: string;
 };
 
@@ -15,28 +16,28 @@ const MENU: MenuItem[] = [
     id: "nasi-lemak",
     name: "Nasi Lemak Deluxe",
     price: 8.9,
-    emoji: "🍛",
+    image: "/menu/nasi-lemak.png",
     desc: "Coconut rice, fried chicken, sambal, egg.",
   },
   {
     id: "chicken-rice",
     name: "Chicken Rice",
     price: 6.5,
-    emoji: "🍗",
+    image: "/menu/chicken-rice.png",
     desc: "Poached chicken, fragrant rice, chilli sauce.",
   },
   {
     id: "laksa",
     name: "Laksa",
     price: 7.2,
-    emoji: "🍜",
+    image: "/menu/laksa.png",
     desc: "Spiced coconut noodle soup, prawns, tofu puff.",
   },
   {
     id: "teh-tarik",
     name: "Teh Tarik",
     price: 2.5,
-    emoji: "🥤",
+    image: "/menu/teh-tarik.png",
     desc: "Hand-pulled milk tea, served hot.",
   },
 ];
@@ -117,7 +118,13 @@ export default function Home() {
                   key={item.id}
                   className="flex items-center gap-3 rounded-xl border border-zinc-100 p-3 dark:border-zinc-800"
                 >
-                  <span className="text-3xl">{item.emoji}</span>
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 shrink-0 rounded-lg object-cover"
+                  />
                   <div className="flex-1">
                     <p className="font-medium text-black dark:text-zinc-50">
                       {item.name}{" "}
@@ -180,7 +187,14 @@ export default function Home() {
 
           {orderState === "idle" && (
             <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
-              <span className="text-5xl">🧑‍🍳</span>
+              <Image
+                src="/kitchen-idle.png"
+                alt="Chef waiting to cook"
+                width={160}
+                height={160}
+                className="h-40 w-40 object-contain"
+                priority
+              />
               <p className="text-zinc-500 dark:text-zinc-400">
                 Waiting for an order — add items and confirm to start cooking.
               </p>
