@@ -1,29 +1,18 @@
 # Publishing the participant starter pack
 
-The participant experience should begin with one repository link and [`START-HERE.md`](../START-HERE.md).
+The participant experience begins with one public repository and
+[`START-HERE.md`](../START-HERE.md).
 
-## Current repository constraint
+## Delivery model
 
-As checked on 20 September 2026, `Tanwyhang/ai-coding-workshop-starter` is private and is not configured as a GitHub template. Participants without repository access cannot use it as their front door.
+`Tanwyhang/ai-coding-workshop-starter` is public. Every team driver clones it
+directly. Teams do **not** need a repository before the event: at the end of the
+workshop `/ship-web` either creates a private repository on the driver's GitHub
+account or pushes to a team repository the driver pastes, then connects it to
+Vercel Git.
 
-Resolve this before sharing the workshop link. Choose one delivery model:
-
-### Recommended: GitHub template
-
-1. Give participants read access, or make the starter public if the event permits it.
-2. Enable **Template repository** in GitHub settings.
-3. Share the template's **Use this template** link.
-4. Each team creates a private repository in its chosen account or organisation.
-5. The team clones its new repository and follows `START-HERE.md`.
-
-### Alternative: assigned team repositories
-
-1. Create one repository per team from the starter before the event.
-2. Give the team driver push access.
-3. Send each team its own repository link.
-4. The team clones that repository and follows `START-HERE.md`.
-
-Do not ask participants to clone the facilitator repository and push back to it.
+Do not give participants push access to the starter. `/ship-web` never pushes
+to it.
 
 ## Distribution checklist
 

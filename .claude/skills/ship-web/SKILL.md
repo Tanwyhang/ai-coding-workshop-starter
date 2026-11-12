@@ -1,101 +1,169 @@
 ---
 name: ship-web
-description: Publish a verified workshop Next.js project through the team's GitHub repository and connect that repository to Vercel Git. Use when a participant runs /ship-web after the local browser journey works. Require approval before commits, pushes, repository changes, or Vercel connection changes.
+description: Publish a verified workshop Next.js project to the team's own GitHub repository (create it or update an existing one), connect that repository to Vercel Git, and confirm the public URL works. Use when a participant runs /ship-web after the local browser journey works. Require approval before creating a repository, pushing, or connecting Vercel.
 ---
 
 # Ship the web project
 
-Publish through GitHub and Vercel Git. Do not upload project files directly to Vercel.
+Teams cloned the public workshop starter (`Tanwyhang/ai-coding-workshop-starter`).
+This skill moves their work into the team's own GitHub repository and lets Vercel
+deploy it from Git. Do not upload project files directly to Vercel.
 
-Read `PROJECT-GROUND-TRUTH.md` before acting. Treat transcript entries as
-history, not proof of login state, repository state, or authorization. Verify
-all current external state with `gh`, `git`, `vercel`, and Vercel MCP.
+Read `PROJECT-GROUND-TRUTH.md` before acting. Verify all current external state
+live with `gh`, `git`, `vercel`, and Vercel MCP. Explain each stage in one or two
+plain sentences. The participant's answer to each question below is the approval
+for that step only.
 
-Work in stages. Explain the result of each stage in plain language and stop for participant approval where specified.
+## 1. Check the project
 
-## 1. Verify the project
-
-Run:
+Ask one yes/no question first: "Has your tester clicked through the journey in
+the browser and seen it work?" If no, stop and suggest they test first.
 
 ```bash
 npm run verify
-npm run build
+git status
 ```
 
-Confirm that the project remains a responsive Next.js web app and contains no native mobile framework or packaging dependency.
+- It must still be a responsive Next.js web app with no native mobile tooling.
+- `.gitignore` must exclude `node_modules`, `.next`, `.env*`, and `.vercel`.
+- Inspect the files Git would publish. Stop if any contains an environment file,
+  token, private key, service-role key, or credential.
 
-Check that `.gitignore` excludes:
-
-```text
-node_modules
-.next
-.env
-.env.*
-!.env.example
-.vercel
-```
-
-Inspect the files Git would publish. Stop if a tracked or staged file contains an environment file, token, private key, service-role key, or credential.
-
-## 2. Confirm the GitHub destination
-
-Run:
+## 2. Choose the GitHub destination
 
 ```bash
 gh auth status
-git status
 git remote -v
 ```
 
-The destination must be the participant's assigned team repository. If `origin` points to the facilitator's source repository, do not push. Explain the problem and ask for the team repository URL.
+**Never push to `Tanwyhang/ai-coding-workshop-starter`.** After cloning, `origin`
+points there; that is expected.
 
-Do not default to a repository name mentioned in the transcript. A rehearsal
-repository proposed in an older session is not the participant's assigned team
-repository and is not authorized merely because it was discussed.
+- **`origin` is already another repository** (a second `/ship-web` run): that is
+  the team repository. Say so in one line and go to stage 3.
+- **No `origin`** (an earlier run stopped half-way): ask the question below.
+- **`origin` is the starter:** ask the question below.
 
-If no team repository exists, offer to create a private repository with `gh repo create`, but request approval immediately before creating it. Default to private.
+> Where should this go? Paste your team's GitHub repo link, or say "new" and I'll
+> create a private repo called `<suggested-name>` on `<gh account>`.
 
-Show the participant:
+Suggest a short kebab-case name from `PROJECT-GOAL.md`. Do not reuse a name from
+an older conversation.
 
-- changed files
-- the intended commit message
-- the exact GitHub destination
-
-Request approval before committing or pushing.
-
-After approval, create the commit and push to `main`. Verify the remote and clean status afterward.
-
-## 3. Connect Vercel Git
-
-Run `vercel whoami` and confirm the intended Vercel account or team.
-
-Use:
+Move the starter remote aside only if needed:
 
 ```bash
-vercel link
-vercel git connect
+# only if origin is the starter and upstream does not exist yet
+git remote rename origin upstream
 ```
 
-Request approval before linking or changing the Vercel project connection. The GitHub repository must remain the deployment source.
+- **New repository:**
+  `gh repo create <owner>/<name> --private --source . --remote origin`
+  (no `--push`).
+- **Existing repository:** `git remote add origin <url>`, then
+  `git ls-remote --symref origin HEAD` to see whether it is empty and which
+  branch is its default.
+  - Empty: continue.
+  - Has history (for example a README made on the GitHub website): tell the
+    participant in one sentence that its files will be combined with this
+    project in stage 3, after their work is committed.
 
-Do not use a direct upload or an MCP file-deployment tool for the participant's submission.
+If the repository is owned by a GitHub organisation, warn once: Vercel's free
+plan may refuse private organisation repositories; a repo on the driver's
+personal account avoids that.
 
-## 4. Check the deployment
+## 3. Commit and push
 
-Use Vercel MCP to find the linked project and latest deployment. Report its status and URL.
+Show the changed files, the commit message, and the destination
+(`<owner>/<name>`, branch `main`, or the existing repo's default branch so
+Vercel treats it as production). Ask for approval, then:
 
-If the deployment failed, retrieve only the relevant build error. Make the smallest fix, run local verification again, then request approval before committing and pushing the repair.
+```bash
+git add -A
+git commit -m "<message>"      # skip if there is nothing to commit, and say so
+```
 
-Ask the tester to complete the agreed journey on the public URL.
+If the existing repository has history, combine it now (this is part of the
+approved push):
 
-## 5. Confirm continuous deployment
+```bash
+git fetch origin
+git merge origin/<branch> --allow-unrelated-histories --no-edit
+```
 
-Explain that later pushes to the connected GitHub repository create new Vercel deployments. Do not create a test commit unless the participant asks for one.
+If files conflict, list them in plain words. Keep this project's version of the
+starter files (for example `README.md`) unless the participant says otherwise,
+finish the merge, and rerun `npm run verify`. Then push:
+
+```bash
+git push -u origin HEAD:<branch>
+```
+
+If the push is rejected, stop and explain. Never force-push.
+
+## 4. Connect Vercel Git
+
+```bash
+vercel whoami
+vercel teams ls
+```
+
+List the available scopes by name and ask which to use if there is more than
+one. Then check for a name clash:
+
+```bash
+vercel project ls --scope <scope>
+```
+
+If a project called `<name>` already exists and is not this team's, pick another
+name. Ask: "OK to create Vercel project `<name>` in `<scope>`, connect it to
+`<owner>/<name>`, and push one empty commit to start the first deployment?"
+After yes:
+
+```bash
+vercel link --yes --project <name> --scope <scope>
+vercel git connect https://github.com/<owner>/<name> --non-interactive --scope <scope>
+```
+
+"Already connected" is a success. If Vercel cannot see the repository, ask the
+participant to grant the Vercel GitHub App access at
+https://github.com/apps/vercel, then retry.
+
+Linking does not start a deployment. Check `vercel ls --scope <scope>`; if
+nothing is building for the latest commit, start one through Git:
+
+```bash
+git commit --allow-empty -m "Start Vercel deployment"
+git push
+```
+
+Never run `vercel deploy` or any MCP file-deployment tool.
+
+## 5. Check the deployment
+
+Use Vercel MCP (or `vercel ls --scope <scope>`) to watch the newest deployment
+until it is Ready or Error.
+
+- **Error:** read only the relevant build error, make the smallest fix, rerun
+  `npm run verify`, then ask before committing and pushing the repair.
+- **Ready:** the public link is the production domain
+  `https://<project>.vercel.app` (see `vercel project inspect <name> --scope
+  <scope>` or the project's domains). Do not hand out the long
+  `...-<scope>.vercel.app` deployment URL; it can ask visitors to log in.
+
+Open the public link yourself (browser tool, or fetch it and check for HTTP 200
+and the key text), then ask the tester to complete the journey from
+`PROJECT-GOAL.md` on that link.
+
+## 6. Hand over
+
+In three lines: the public URL, that every push to `main` now redeploys
+automatically, and that running `/ship-web` again publishes later changes.
 
 ## Boundaries
 
-- Keep human confirmation enabled for GitHub and Vercel mutations.
 - Never publish secrets or `.env.local`.
-- Never push to the facilitator's source repository.
-- Never change repository visibility without explicit approval.
+- Never push to the starter repository, never force-push, never change
+  repository visibility without explicit approval.
+- Never bypass Git with a direct upload or `vercel deploy`.
 - Never replace the Next.js web architecture or add native mobile tooling.

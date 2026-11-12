@@ -1,12 +1,12 @@
 ---
 name: one-shot
-description: One command that takes a participant from "I have an idea" to a working, verified Next.js app on their own laptop, retrying and fixing until it actually works. Use when a participant runs /one-shot, says "just build it", "do it all for me", or gives an idea and wants the app running without step-by-step hand-holding. Relaxed tone, optional personal preferences, stops only for logins and approvals.
-argument-hint: "[your idea, optional]"
+description: One command that takes the approved journey in PROJECT-GOAL.md (from /wish) to a working, verified Next.js app on the participant's laptop, retrying and fixing until it actually works. Use when a participant runs /one-shot, or says "just build it" after /wish. Relaxed tone, optional personal preferences, stops only for logins and approvals.
+argument-hint: "[preferences, optional]"
 ---
 
 # One-shot: idea → running app
 
-The participant gives one idea. You do the rest and keep going until it works. They should be able to sit back.
+The participant has an approved goal from `/wish`. You do the rest and keep going until it works. They should be able to sit back.
 
 ## Context contract
 
@@ -38,7 +38,7 @@ git --version
 ```
 
 - Missing or too old (Node needs 20 or newer): tell them the one-line install for their OS, then wait. Mac: `brew install node`. Windows: `winget install OpenJS.NodeJS.LTS`. Then ask them to reopen the terminal.
-- Everything else (GitHub login, Vercel login, MCP) is NOT needed to build. Leave it for `/ship-web`. If they have never run `/workshop-onboarding`, mention it once at the end, not now.
+- Everything else (GitHub login, Vercel login, MCP) is NOT needed to build. Leave it for `/ship-web`.
 
 If `node_modules` is missing, run `npm install` yourself.
 
@@ -60,9 +60,11 @@ Do not ask anything else. Make sensible choices yourself and mention them in the
 
 ## 3. Turn the idea into one journey
 
-If `PROJECT-GOAL.md` does not exist, write it yourself from the participant's idea, using exactly these headings: `# Project goal`, `## Goal` (the desired outcome), `## Evidence` (what a tester can see in a browser), `## Required conditions`, `## Smallest journey` (numbered user actions ending in the visible result), `## Later`. Do not run the `/wish` interview. Keep the journey to 3 to 5 steps. Put every extra idea under "Later".
+`PROJECT-GOAL.md` (written and approved during `/wish`) is the journey to build. Build exactly that; do not rewrite or re-scope it, and do not re-ask the `/wish` questions. Only update it if the participant changes their mind, and say what changed.
 
-Show them the journey in 3 to 5 lines and say you are starting. Do not wait for approval; they can interrupt. If their idea is too big, shrink it and say what you cut.
+If `PROJECT-GOAL.md` does not exist, stop before building and say: "Let's lock the goal first. Run `/wish` (about 5 minutes), approve the journey, then run `/one-shot` again." Do not write the goal yourself.
+
+Show them the journey in 3 to 5 lines and say you are starting. Do not wait for another approval; they can interrupt.
 
 ## 4. Build
 
@@ -98,7 +100,7 @@ Give a short summary:
 - What works (the happy path, in one sentence) and the URL to open.
 - The choices you made for them (look, language, anything you cut), so they can change them.
 - 2 or 3 "try saying this next" ideas they can paste to tweak it, such as "make the buttons bigger" or "add a second page for ...".
-- The next command: "When you like it, run `/ship-web` to put it on GitHub and Vercel."
+- The next steps: "Click through it yourself in the browser. When you like it, run `/ship-web` to put it on your team's GitHub and get a public Vercel link."
 
 Stop after this handoff. Do not append unrelated setup or shipping blockers,
 offer to resume an older login, or ask for repository-creation approval. Those

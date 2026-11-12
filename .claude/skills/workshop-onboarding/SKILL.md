@@ -1,6 +1,6 @@
 ---
 name: workshop-onboarding
-description: Run this the first time a participant opens this repo in Claude Code, or whenever they run /workshop-onboarding, to check and set up everything needed for the "Prompt → Next.js → GitHub → Vercel" workshop — tool versions, GitHub/Vercel auth, the Vercel MCP server, and a working local build. Use proactively at the start of a fresh session in this repo if the participant hasn't confirmed they're already set up.
+description: Run this the first time a participant opens this repo in Claude Code, or whenever they run /workshop-onboarding, to check and set up everything needed for the "Prompt → Next.js → GitHub → Vercel" workshop — tool versions, GitHub/Vercel auth, the Vercel MCP server, and a working local build. Do not start it on your own when the participant has asked for something else (such as /wish, /one-shot, or /ship-web).
 ---
 
 # Workshop onboarding
@@ -56,11 +56,13 @@ Once logged in, remind them once: authorize Vercel's GitHub App for their accoun
 
 ## 5. Vercel MCP
 
-Add the Vercel MCP server globally so it's available in every project, not just this one:
+Add the Vercel MCP server globally so it's available in every project, not just this one. First check `command -v claude`.
 
-```bash
-claude mcp add --transport http vercel https://mcp.vercel.com -s user
-```
+- If the `claude` command exists:
+  ```bash
+  claude mcp add --transport http vercel https://mcp.vercel.com -s user
+  ```
+- If it does not (common in Claude Desktop): ask the participant to add a custom connector named `vercel` with URL `https://mcp.vercel.com` in Claude Desktop's connector settings, then continue. Vercel MCP is only used later to read deployment status; if it cannot be set up, note it and carry on — `/ship-web` can use `vercel ls` instead.
 
 Tell the participant to run `/mcp` themselves and complete the OAuth popup, then confirm it shows "connected" before continuing. Remind them to keep human confirmation ON for Vercel tool calls — don't auto-approve deploys.
 
@@ -78,15 +80,17 @@ Confirm `npm run verify` passes clean and the dev server serves `http://localhos
 
 ## 7. Point them at what's next
 
-Once everything above passes, tell the participant:
+Once everything above passes, tell the participant, briefly:
 
-- The app in `src/app/page.tsx` is the starting point — a simple two-panel food-ordering demo (menu on the left, kitchen/cooking status on the right).
-- Want it hands-off? Run `/one-shot` with your idea. It builds, tests and fixes until the app works, and you can state your own preferences (look, language, must-haves).
-- Run `/wish` before writing the coding prompt. It works backwards from the goal to one testable browser journey.
-- [`WISHFUL-PROGRAMMING.md`](../../../WISHFUL-PROGRAMMING.md) is the participant worksheet for that method.
-- [`ONE-SHOT-PROMPT.md`](../../../ONE-SHOT-PROMPT.md) is a worked example showing how the resulting journey becomes a precise prompt.
-- Once the local journey works, run `/ship-web` to verify it, push to the team's GitHub repository, and connect Vercel Git.
-- Their goal for the workshop: work backwards from the desired outcome, have Claude Code build the smallest complete journey, then publish through GitHub and Vercel.
+- They are set up. The demo in `src/app/page.tsx` (menu on the left, kitchen on the right) is just the starting point.
+- The workshop flow from here:
+  1. `/wish` — work backwards from your goal to one small browser journey (writes `PROJECT-GOAL.md`).
+  2. `/one-shot` — builds that journey, tests it, and fixes it until it works on this laptop.
+  3. Try it yourself in the browser.
+  4. `/ship-web` — puts it on your team's own GitHub repo (new or existing), connects Vercel, and gives you a public link.
+- Do not push to the starter repo they cloned; `/ship-web` handles moving to the team repo.
+
+Stop there. Do not start `/wish` or any other step yourself.
 
 ## Don't
 

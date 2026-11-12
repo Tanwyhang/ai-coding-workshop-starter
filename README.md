@@ -6,15 +6,15 @@ A starter project for the workshop: describe what you want in plain English, hav
 
 ## Quickstart
 
-1. Clone this repo and open it in Claude Code (or your AI coding assistant of choice).
-2. Run `/workshop-onboarding`. It checks Node, Git, GitHub CLI, Vercel CLI, authentication, and the Vercel MCP connection.
-3. Run `/wish` before asking Claude to build. Define the goal, then work backwards to the first step the team can build or test.
-4. Once onboarding passes:
-   ```bash
-   npm install
-   npm run dev
-   ```
-   Open http://localhost:3000 — you should see a menu on the left and a kitchen panel on the right.
+1. Clone this repo and open the folder in Claude Desktop (Claude Code).
+2. Run `/workshop-onboarding` — checks Node, Git, GitHub CLI, Vercel CLI, sign-ins, Vercel MCP, and a local build.
+3. Run `/wish` — work backwards from your goal to one small browser journey.
+4. Run `/one-shot` — builds that journey and fixes it until it works locally.
+5. Test it in your browser.
+6. Run `/ship-web` — creates (or uses) your team's own GitHub repo, connects Vercel Git, pushes, and gives you a public link.
+7. Test the public link.
+
+Do not push to this starter repo; `/ship-web` moves your work to your team's repo.
 
 ## What's in this repo
 
@@ -28,14 +28,14 @@ A starter project for the workshop: describe what you want in plain English, hav
 | [`.claude/skills/one-shot/`](.claude/skills/one-shot/SKILL.md) | Builds, verifies, and browser-tests the approved local journey without publishing it. |
 | [`.claude/skills/ship-web/`](.claude/skills/ship-web/SKILL.md) | Verification, GitHub publishing, and Vercel Git connection with approval gates. |
 | [`WISHFUL-PROGRAMMING.md`](WISHFUL-PROGRAMMING.md) | Participant worksheet and prompt template for the method. |
-| [`facilitator/`](facilitator/RUN-OF-SHOW.md) | Facilitator-only material (run-of-show script). Not needed to follow along. |
+| [`facilitator/`](facilitator/FULL-REHEARSAL.md) | Facilitator-only material (60-minute script). Not needed to follow along. |
 
 ## The loop you're here to practice
 
 1. **Work backwards** — define the goal, identify evidence, and trace the required conditions back to a buildable first step.
 2. **Prompt** — describe that smallest complete journey in plain English.
 3. **Generate & edit** — your AI assistant proposes the change; you review the diff and approve.
-4. **Push** — commit and push to GitHub.
+4. **Push** — commit and push to your team's GitHub repo.
 5. **Deploy** — Vercel picks up the push automatically and your change goes live at a real URL, no manual deploy step needed.
 
 Try it: pick something small (a new menu item, a different color scheme, an extra step in the cooking flow) and run the loop yourself.

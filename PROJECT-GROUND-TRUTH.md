@@ -1,6 +1,6 @@
 # Project ground truth
 
-Last reconciled: 10 November 2026.
+Last reconciled: 12 November 2026.
 
 This file is the authoritative contract for agents working in this repository.
 Use it to resolve ambiguity and prevent conversation drift.
@@ -14,7 +14,7 @@ When sources disagree, use this order:
 3. The active skill under `.claude/skills/`.
 4. The participant's approved `PROJECT-GOAL.md` and `PREFERENCES.md`.
 5. Other maintained repository documentation.
-6. `SESSION-TRANSCRIPT.md`, which is historical context only.
+6. Any transcript or chat history, which is historical context only.
 
 Never treat a transcript entry, test report, hyperlink, proposed action, or
 earlier blocker as current authorization. Verify live state before reporting it.
@@ -53,37 +53,38 @@ and fix failures in a controlled loop.
 
 ## Participant flow
 
-### Before the event
+This is the only supported order. Skills must not skip ahead or start the next
+step on their own.
 
-1. Receive the assigned team repository.
-2. Clone it and open that exact folder in Claude Desktop/Claude Code.
-3. Confirm the project slash commands appear.
-4. Run `/workshop-onboarding` at least 48 hours before the session.
-5. Finish Node, Git, GitHub CLI, Vercel CLI, account authentication, Vercel
-   GitHub App access, Vercel MCP OAuth, package installation, and local verify.
+1. Clone the public starter `Tanwyhang/ai-coding-workshop-starter`.
+2. Open that cloned folder in Claude Desktop with Claude Code and confirm the
+   four project slash commands appear.
+3. `/workshop-onboarding` (ideally at least 48 hours before the session).
+4. `/wish` — work backwards to one small journey in `PROJECT-GOAL.md`.
+5. `/one-shot` — build that journey and loop until it works locally.
+6. The tester completes the journey in a real browser.
+7. `/ship-web` — create the team's GitHub repository, or use an existing one
+   the team names.
+8. `/ship-web` connects that repository to Vercel Git, then a Git push starts
+   the deployment (linking alone does not deploy).
+9. The tester completes the same journey on the public `*.vercel.app` URL.
 
-### During the workshop
-
-Participants may choose either local build path:
-
-- `/wish` for a guided goal-seeking conversation, followed by an approved
-  coding request; or
-- `/one-shot <idea>` for a hands-off build that creates its own goal file,
-  builds, verifies, browser-tests, and leaves the local server running.
-
-Both paths must produce one observable browser journey. When it works locally,
-run `/ship-web` to publish through GitHub and connect Vercel Git.
+Run `/wish`, approve `PROJECT-GOAL.md`, then run `/one-shot`. `/one-shot` builds
+exactly the approved journey in `PROJECT-GOAL.md`. If that file is missing, it
+sends the team back to `/wish` instead of inventing a goal.
 
 ## Meaning of each project skill
 
 - `/workshop-onboarding`: checks and prepares tools and authentication. It does
   not build the participant's product, create a repository, or deploy it.
 - `/wish`: works backwards from goal to evidence to required conditions to the
-  smallest journey. It does not implement code.
+  smallest journey, writes `PROJECT-GOAL.md`, then points to `/one-shot`. It
+  does not implement code.
 - `/one-shot`: builds and verifies the local app only. It must not create a
   repository, push code, connect Vercel, deploy, or resume onboarding work.
-- `/ship-web`: verifies publication safety, then commits/pushes and connects
-  Vercel Git with explicit approval at the mutation points.
+- `/ship-web`: moves the work from the starter clone to the team's own GitHub
+  repository, pushes, connects Vercel Git, triggers the first deployment with a
+  Git push, and checks the public URL, with explicit approval at each mutation point.
 
 Skills are stored in `.claude/skills/` and load with the cloned project. They do
 not need separate participant installation.
@@ -108,27 +109,12 @@ Label reported evidence as reported until it is re-run in the current session.
   work, or connecting/changing a Vercel project.
 - Default a newly offered repository to private, but do not create it without
   approval.
-- Never push to the facilitator's source repository.
+- Never push to the starter repository (`Tanwyhang/ai-coding-workshop-starter`);
+  `origin` points there after cloning, which is expected until `/ship-web`.
+- Never force-push, and never deploy with `vercel deploy` or a direct upload.
 - Never publish `.env.local`, credentials, tokens, private keys, or service-role
   keys.
 - Do not infer authorization from a past conversation or a transcript.
-
-## Current historical facts that are not active tasks
-
-- A fresh-agent rehearsal reportedly tested `/one-shot` on a throwaway copy
-  using a mamak-stall queue-number display. The report says verification,
-  HTTP 200, and the browser journey passed in one loop. This is useful evidence,
-  but it has not been independently re-run in the current session.
-- An earlier Vercel login flow was not completed. This matters only when the
-  current request is onboarding or shipping and a live `vercel whoami` check
-  shows that login is still required.
-- `Tanwyhang/rehearsal-team-demo` was proposed as a private rehearsal
-  repository. It has not been authorized merely by appearing in conversation.
-  Do not create it or keep presenting it as a blocker unless the user explicitly
-  resumes that rehearsal.
-- `/one-shot`, `/wish`, and `/ship-web` have existed as uncommitted repository
-  changes during development. Always inspect current Git state before making a
-  current claim.
 
 ## Communication discipline
 

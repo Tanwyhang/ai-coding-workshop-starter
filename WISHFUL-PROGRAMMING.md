@@ -33,7 +33,7 @@ The chain between the **first step** and the **evidence** forms the happy path f
 
 ## Prompt template
 
-Copy this into Claude after completing the questions:
+The usual next step after `/wish` is `/one-shot`. If your team prefers a guided build instead, copy this into Claude:
 
 ```text
 Build a responsive Next.js web experience for [primary user].
@@ -52,4 +52,4 @@ Done when a tester can complete the journey in a browser and observe this eviden
 
 ## Scope check
 
-Keep an item only if it helps produce the evidence for the goal. Put every other idea in `NEXT_STEPS.md`.
+Keep an item only if it helps produce the evidence for the goal. Put every other idea under **Later** in `PROJECT-GOAL.md`.

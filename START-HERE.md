@@ -24,24 +24,20 @@ Create or confirm your GitHub and Vercel accounts. The onboarding skill will che
 
 ## Before the workshop
 
-### 1. Get your team repository
-
-Open the team repository link provided by the facilitator. Confirm that your team can view it and that you have permission to push.
-
-Do not use the facilitator's source repository as your submission repository.
-
-### 2. Clone it
-
-Replace the placeholder with the repository shown in your browser:
+### 1. Clone the starter
 
 ```bash
-gh repo clone <team-owner>/<team-repository>
-cd <team-repository>
+git clone https://github.com/Tanwyhang/ai-coding-workshop-starter.git
+cd ai-coding-workshop-starter
 ```
 
-### 3. Open the cloned folder
+You do not need your own team repository yet. `/ship-web` creates it (or uses
+one your team already has) at the end.
 
-Open the cloned project folder in Claude Desktop. Type `/` and confirm these project skills appear:
+### 2. Open the cloned folder
+
+Open the `ai-coding-workshop-starter` folder in Claude Desktop. Type `/` and
+confirm these project skills appear:
 
 ```text
 /workshop-onboarding
@@ -52,7 +48,7 @@ Open the cloned project folder in Claude Desktop. Type `/` and confirm these pro
 
 If they do not appear, confirm that Claude opened the cloned folder rather than its parent folder.
 
-### 4. Run onboarding
+### 3. Run onboarding
 
 ```text
 /workshop-onboarding
@@ -68,7 +64,7 @@ You are ready when Claude confirms:
 - `npm run verify` passes
 - The local app opens in a browser
 
-Finish installation, repository access, and onboarding at least 48 hours before the workshop.
+Finish installation and onboarding at least 48 hours before the workshop.
 
 ## During the workshop
 
@@ -78,41 +74,43 @@ Finish installation, repository access, and onboarding at least 48 hours before 
 /wish
 ```
 
-Answer one question at a time. Review `PROJECT-GOAL.md` and approve the smallest browser journey.
+Answer one question at a time. Check `PROJECT-GOAL.md` and approve the smallest browser journey.
 
-### 2. Ask Claude to build the approved journey
-
-For the hands-off route, run:
+### 2. Build it
 
 ```text
-/one-shot Build the approved journey in PROJECT-GOAL.md. [Add your visual or
-language preferences.]
+/one-shot
 ```
 
-Claude builds, verifies, browser-tests, and leaves the local app running. It
-does not publish or deploy.
+Add preferences if you like, for example `/one-shot playful dark theme, Bahasa Malaysia`.
+Claude builds the journey in `PROJECT-GOAL.md`, verifies it, browser-tests it,
+and leaves the local app running. It does not publish or deploy.
 
-For the guided route, use:
+### 3. Test it yourself
 
-```text
-Build the approved journey in PROJECT-GOAL.md. Keep this as a responsive Next.js web app. Use local sample data. Show me the plan before changing files.
-```
+Open the local link Claude gives you and click through the journey. Ask Claude
+for fixes in plain English until it works.
 
-Review the plan and approve it. Test the result in the browser.
-
-### 3. Publish through GitHub and Vercel
+### 4. Publish through GitHub and Vercel
 
 ```text
 /ship-web
 ```
 
-Review each approval request. The skill verifies the project, commits and pushes to the team's GitHub repository, connects Vercel Git, and checks the resulting deployment.
+Paste your team's GitHub repo link, or say "new" to create a private one.
+Approve each step. The skill pushes your code there, connects Vercel to that
+repo, and gives you the public link.
+
+### 5. Test the public link
+
+Open the `https://<project>.vercel.app` link on a phone and complete the same
+journey.
 
 ## Completion checklist
 
 - The agreed journey works locally
 - `npm run verify` passes
-- The code is in the team's GitHub repository
+- The code is in the team's own GitHub repository (not the starter)
 - Vercel is connected to that repository
 - The public URL works in a browser
 - A later GitHub push creates another Vercel deployment

@@ -58,7 +58,8 @@ creating accounts.
 
 ### Do not start unless these are true
 
-- Teams already have their assigned repository and push access.
+- Each driver has cloned `Tanwyhang/ai-coding-workshop-starter` and is signed in to
+  their own GitHub account (the team repo is created later by `/ship-web`).
 - Team drivers completed `/workshop-onboarding` before the event.
 - Claude Desktop, Node, Git, GitHub CLI, Vercel CLI, and Vercel MCP are ready.
 - At least one fallback driver machine is available for a team with a broken
@@ -114,8 +115,8 @@ Say:
 > journey, and one demo lead. Everyone else watches for unclear assumptions and
 > helps with content."
 
-> "Open your assigned team repository in Claude Desktop now. It must be the
-> project folder itself, not the folder above it."
+> "Open your cloned `ai-coding-workshop-starter` folder in Claude Desktop now. It
+> must be the project folder itself, not the folder above it."
 
 **Teams:** Open Claude Code, type `/`, and find:
 
@@ -264,10 +265,8 @@ five actions and one visible success condition.
 
 Say:
 
-> "You have two routes. The guided route is `/wish`, then a normal build request
-> where you review the plan. The fast route is `/one-shot`; it builds, checks,
-> fixes, and browser-tests the local app for you. We will use the fast route now
-> because the goal is already approved."
+> "Your goal is approved in `PROJECT-GOAL.md`. Now run `/one-shot`. It builds that
+> exact journey, checks it, fixes it, and browser-tests the local app for you."
 
 Explain its boundary:
 
@@ -427,24 +426,24 @@ Narrate the stages as Claude performs them:
 
 ### GitHub destination
 
-> "Next, Claude checks `gh auth status`, the Git remote, and the files that will
-> be published. The destination must be your team's repository, not the
-> facilitator starter."
+> "Next, Claude asks where the code should go. Paste your team's GitHub repo
+> link, or say 'new' and it creates a private repo on the driver's account. It
+> will never push to the starter you cloned."
 
 When the skill asks for commit/push approval, say:
 
 > "Read three things before approving: the changed files, the commit message,
 > and the destination repository. Approval is not a formality."
 
-For the planned participant setup, repositories should already be assigned. If
-a team unexpectedly has no repository, a mentor handles it. Do not let the room
-invent repository names and create them blindly during the main demonstration.
+Teams do not have repositories before this step; `/ship-web` creates one or
+uses an existing one the team pastes. The skill suggests a short name from
+`PROJECT-GOAL.md`; the driver only needs to accept it or type another.
 
 ### Vercel Git connection
 
-> "GitHub stores the code. Vercel watches that repository. The Vercel CLI links
-> the local project and connects its Git remote. The Git push, not a file upload,
-> becomes the deployment source."
+> "GitHub stores the code. Vercel watches that repository. Claude pushes your
+> code, connects Vercel, then pushes one empty commit so Vercel sees a push and
+> builds it. The Git push, not a file upload, is the deployment source."
 
 When the skill asks to connect or change a Vercel project, say:
 
@@ -463,8 +462,8 @@ Say:
 > the Git history and stop later pushes from becoming the normal deployment
 > workflow."
 
-**Checkpoint:** Teams have pushed to the correct repository and either connected
-Vercel Git or are waiting on a known permission issue.
+**Checkpoint:** Teams have pushed to their own repository and connected Vercel
+Git, or are waiting on a known permission issue.
 
 ## 0:52-0:57 - Inspect the deployment and repair one failure
 
@@ -539,10 +538,11 @@ Display or share this section after the workshop.
 ## Before the workshop
 
 ```text
-1. Open your assigned team repository folder in Claude Desktop.
-2. Type / and confirm all four project skills appear.
-3. Run /workshop-onboarding.
-4. Complete every login and verification step at least 48 hours before Friday.
+1. git clone https://github.com/Tanwyhang/ai-coding-workshop-starter.git
+2. Open the ai-coding-workshop-starter folder in Claude Desktop.
+3. Type / and confirm all four project skills appear.
+4. Run /workshop-onboarding.
+5. Complete every login and verification step at least 48 hours before Friday.
 ```
 
 ## During the workshop
@@ -550,12 +550,12 @@ Display or share this section after the workshop.
 ```text
 1. Run /wish.
 2. Approve the smallest journey in PROJECT-GOAL.md.
-3. Run /one-shot Build the approved journey in PROJECT-GOAL.md. [preferences]
+3. Run /one-shot (add preferences if you like).
 4. Let the tester complete the local journey.
-5. Run /ship-web.
-6. Check the files, commit message, GitHub destination, Vercel account, and
-   project before approving external actions.
-7. Test the same journey on the public Vercel URL.
+5. Run /ship-web. Paste your team's GitHub repo link, or say "new".
+6. Check the repo name, Vercel account, files, and commit message before
+   approving each step.
+7. Test the same journey on the public https://<project>.vercel.app link.
 ```
 
 ## What each command owns
@@ -642,9 +642,12 @@ Use this order so teams are not sent down unrelated debugging paths.
 
 1. Run `gh auth status`.
 2. Confirm Git identity.
-3. Confirm `origin` is the assigned team repository.
+3. Confirm `origin` is the team repository (the starter should now be
+   `upstream`).
 4. Confirm the driver has push access.
-5. Never redirect the push to the facilitator repository.
+5. If the push is rejected for different history, do not force-push; use a new
+   repo or a mentor.
+6. Never redirect the push to the starter repository.
 
 ## Vercel connection blocked
 
@@ -653,7 +656,14 @@ Use this order so teams are not sent down unrelated debugging paths.
 3. Confirm the Vercel GitHub App can access the team repository.
 4. Confirm the local Vercel project link.
 5. Run or inspect `vercel git connect` through the active skill.
-6. Use Vercel MCP for deployment status and relevant logs.
+6. Connected but no deployment? Linking does not deploy; only a push after the
+   connection does. Let `/ship-web` push its empty "Start Vercel deployment"
+   commit (it asks first).
+7. Private repo owned by a GitHub organisation refused on the free Vercel plan?
+   Use a repo on the driver's personal account.
+8. Use Vercel MCP for deployment status and relevant logs.
+9. Visitors see a Vercel login? They were given the long deployment URL; share
+   `https://<project>.vercel.app` instead.
 
 ## A secret is detected
 

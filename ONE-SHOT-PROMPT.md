@@ -17,9 +17,9 @@ That backwards chain defines the smallest complete journey: **select an item, co
 
 ## 0. Starting point
 
-```bash
-npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-dir --import-alias "@/*"
-```
+Start inside the cloned workshop starter; do not create another project. This
+page is a reading example of a precise prompt. In the workshop, use `/wish`
+then `/one-shot` instead of pasting it.
 
 ## 1. The prompt
 

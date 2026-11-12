@@ -48,12 +48,14 @@ Summarize the answers in this form:
 - [Useful idea that is not required for the journey]
 ```
 
-Write the result to `PROJECT-GOAL.md`. Then propose a coding prompt using the template in [`WISHFUL-PROGRAMMING.md`](../../../WISHFUL-PROGRAMMING.md).
+Write the result to `PROJECT-GOAL.md`. Keep the smallest journey to 3 to 5 steps.
 
 Ask the participant to confirm that the journey can produce the evidence for their goal before any code changes.
 
-Stop after the participant confirms the journey. Name the next build option if
-useful, but do not start it automatically.
+Stop after the participant confirms the journey. End with one line:
+"Next: run `/one-shot` and it will build this journey." Do not start it
+automatically. (Teams who prefer a guided build can instead paste the prompt
+template from [`WISHFUL-PROGRAMMING.md`](../../../WISHFUL-PROGRAMMING.md).)
 
 ## Boundaries
 
