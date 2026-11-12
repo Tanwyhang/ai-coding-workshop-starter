@@ -108,6 +108,12 @@ vercel whoami
 vercel teams ls
 ```
 
+Compare the `vercel whoami` username with the `username` from the Vercel MCP
+`get_auth_user` tool. If they differ, or the MCP is not connected, say so in one
+line and use only the CLI (`vercel ls`, `vercel inspect`) to check deployments
+in stage 5. The CLI account is the one that owns the project. Do not change
+either login yourself.
+
 List the available scopes by name and ask which to use if there is more than
 one. Then check for a name clash:
 
@@ -141,7 +147,7 @@ Never run `vercel deploy` or any MCP file-deployment tool.
 
 ## 5. Check the deployment
 
-Use Vercel MCP (or `vercel ls --scope <scope>`) to watch the newest deployment
+Use Vercel MCP if its account matched in stage 4 (otherwise `vercel ls --scope <scope>`) to watch the newest deployment
 until it is Ready or Error.
 
 - **Error:** read only the relevant build error, make the smallest fix, rerun

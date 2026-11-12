@@ -66,6 +66,23 @@ Add the Vercel MCP server globally so it's available in every project, not just 
 
 Tell the participant to run `/mcp` themselves and complete the OAuth popup, then confirm it shows "connected" before continuing. Remind them to keep human confirmation ON for Vercel tool calls — don't auto-approve deploys.
 
+### Same Vercel account check
+
+Once the MCP is connected, confirm it uses the same Vercel account as the CLI.
+Compare the username from `vercel whoami` with the `username` returned by the
+Vercel MCP `get_auth_user` tool.
+
+- **Same:** say so in one line and continue.
+- **Different:** tell the participant in one sentence that the CLI and MCP are
+  signed in to different Vercel accounts, so the deployment check later would
+  look at the wrong account. Ask them to run `/mcp` (in a `claude` terminal if
+  the Desktop app has no `/mcp` screen), pick **vercel**, choose **Clear
+  authentication**, then **Authenticate** as the CLI's account. Wait for them to
+  confirm, then compare again. If they would rather use the MCP's account, run
+  `vercel logout` and `vercel login` instead. Do not clear or change either
+  login yourself.
+- **MCP not set up:** skip this check; `/ship-web` will use the CLI.
+
 ## 6. Local project check
 
 From the repo root:
