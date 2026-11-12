@@ -24,19 +24,22 @@ Create or confirm your GitHub and Vercel accounts. The onboarding skill will che
 
 ## Before the workshop
 
-### 1. Clone the starter
+### 1. Get the starter
+
+If you received the workshop zip, unzip it. The starter is its `app` folder.
+
+Otherwise, clone it:
 
 ```bash
 git clone https://github.com/Tanwyhang/ai-coding-workshop-starter.git
-cd ai-coding-workshop-starter
 ```
 
 You do not need your own team repository yet. `/ship-web` creates it (or uses
 one your team already has) at the end.
 
-### 2. Open the cloned folder
+### 2. Open the starter folder
 
-Open the `ai-coding-workshop-starter` folder in Claude Desktop. Type `/` and
+Open the `app` folder (or `ai-coding-workshop-starter` if you cloned) in Claude Desktop. Type `/` and
 confirm these project skills appear:
 
 ```text
@@ -46,7 +49,7 @@ confirm these project skills appear:
 /ship-web
 ```
 
-If they do not appear, confirm that Claude opened the cloned folder rather than its parent folder.
+If they do not appear, confirm that Claude opened the starter folder itself (`app`), not the folder above it.
 
 ### 3. Run onboarding
 

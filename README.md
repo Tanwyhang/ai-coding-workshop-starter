@@ -6,7 +6,7 @@ A starter project for the workshop: describe what you want in plain English, hav
 
 ## Quickstart
 
-1. Clone this repo and open the folder in Claude Desktop (Claude Code).
+1. Open this folder in Claude Desktop (Claude Code): the `app` folder from the workshop zip, or a `git clone` of this repo.
 2. Run `/workshop-onboarding` — checks Node, Git, GitHub CLI, Vercel CLI, sign-ins, Vercel MCP, and a local build.
 3. Run `/wish` — work backwards from your goal to one small browser journey.
 4. Run `/one-shot` — builds that journey and fixes it until it works locally.
@@ -28,7 +28,6 @@ Do not push to this starter repo; `/ship-web` moves your work to your team's rep
 | [`.claude/skills/one-shot/`](.claude/skills/one-shot/SKILL.md) | Builds, verifies, and browser-tests the approved local journey without publishing it. |
 | [`.claude/skills/ship-web/`](.claude/skills/ship-web/SKILL.md) | Verification, GitHub publishing, and Vercel Git connection with approval gates. |
 | [`WISHFUL-PROGRAMMING.md`](WISHFUL-PROGRAMMING.md) | Participant worksheet and prompt template for the method. |
-| [`facilitator/`](facilitator/FULL-REHEARSAL.md) | Facilitator-only material (60-minute script). Not needed to follow along. |
 
 ## The loop you're here to practice
 

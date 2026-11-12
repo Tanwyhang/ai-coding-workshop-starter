@@ -56,8 +56,10 @@ and fix failures in a controlled loop.
 This is the only supported order. Skills must not skip ahead or start the next
 step on their own.
 
-1. Clone the public starter `Tanwyhang/ai-coding-workshop-starter`.
-2. Open that cloned folder in Claude Desktop with Claude Code and confirm the
+1. Get the starter: the `app` folder of the workshop zip, or a clone of the
+   public `Tanwyhang/ai-coding-workshop-starter`. Both include `.git`, so
+   `origin` points to the starter.
+2. Open that folder in Claude Desktop with Claude Code and confirm the
    four project slash commands appear.
 3. `/workshop-onboarding` (ideally at least 48 hours before the session).
 4. `/wish` — work backwards to one small journey in `PROJECT-GOAL.md`.

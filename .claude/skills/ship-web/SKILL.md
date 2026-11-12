@@ -5,7 +5,7 @@ description: Publish a verified workshop Next.js project to the team's own GitHu
 
 # Ship the web project
 
-Teams cloned the public workshop starter (`Tanwyhang/ai-coding-workshop-starter`).
+Teams cloned (or unzipped) the public workshop starter (`Tanwyhang/ai-coding-workshop-starter`).
 This skill moves their work into the team's own GitHub repository and lets Vercel
 deploy it from Git. Do not upload project files directly to Vercel.
 
