@@ -93,7 +93,7 @@ npm run verify   # lint + build
 npm run dev
 ```
 
-Confirm `npm run verify` passes clean and the dev server serves `http://localhost:3000` with a 200. Stop the dev server once confirmed (don't leave it running).
+Confirm `npm run verify` passes clean and the dev server serves `http://localhost:3000` with a 200. Then stop only the dev server you started (its process ID, or the process on the port it reported). Never stop servers by name (`pkill node`, `pkill -f next`); that can kill the participant's other projects.
 
 ## 7. Point them at what's next
 

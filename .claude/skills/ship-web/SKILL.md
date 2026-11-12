@@ -16,6 +16,12 @@ for that step only.
 
 ## 1. Check the project
 
+If `PROJECT-GOAL.md` does not exist, the team is shipping the untouched sample
+app (menu on the left, kitchen on the right). That is fine: it is a good first
+deployment test. Its journey is: add an item, press **Confirm Order**, and see
+the kitchen stages run. Use that journey wherever this skill mentions
+`PROJECT-GOAL.md`.
+
 Ask one yes/no question first: "Has your tester clicked through the journey in
 the browser and seen it work?" If no, stop and suggest they test first.
 
@@ -47,7 +53,8 @@ points there; that is expected.
 > Where should this go? Paste your team's GitHub repo link, or say "new" and I'll
 > create a private repo called `<suggested-name>` on `<gh account>`.
 
-Suggest a short kebab-case name from `PROJECT-GOAL.md`. Do not reuse a name from
+Suggest a short kebab-case name from `PROJECT-GOAL.md` (for the sample app:
+`<gh-username>-workshop-demo`). Do not reuse a name from
 an older conversation.
 
 Move the starter remote aside only if needed:
@@ -80,7 +87,8 @@ Vercel treats it as production). Ask for approval, then:
 
 ```bash
 git add -A
-git commit -m "<message>"      # skip if there is nothing to commit, and say so
+git commit -m "<message>"      # skip if there is nothing to commit (for example
+                               # the untouched sample app) and say so; still push
 ```
 
 If the existing repository has history, combine it now (this is part of the
@@ -159,7 +167,7 @@ until it is Ready or Error.
 
 Open the public link yourself (browser tool, or fetch it and check for HTTP 200
 and the key text), then ask the tester to complete the journey from
-`PROJECT-GOAL.md` on that link.
+`PROJECT-GOAL.md` (or the sample journey) on that link.
 
 ## 6. Hand over
 

@@ -71,6 +71,9 @@ Finish installation and onboarding at least 48 hours before the workshop.
 
 ## During the workshop
 
+Optional warm-up: run `/ship-web` on the untouched sample app to get your first
+public link, then continue below.
+
 ### 1. Work backwards from the goal
 
 ```text

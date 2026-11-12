@@ -62,7 +62,7 @@ Do not ask anything else. Make sensible choices yourself and mention them in the
 
 `PROJECT-GOAL.md` (written and approved during `/wish`) is the journey to build. Build exactly that; do not rewrite or re-scope it, and do not re-ask the `/wish` questions. Only update it if the participant changes their mind, and say what changed.
 
-If `PROJECT-GOAL.md` does not exist, stop before building and say: "Let's lock the goal first. Run `/wish` (about 5 minutes), approve the journey, then run `/one-shot` again." Do not write the goal yourself.
+If `PROJECT-GOAL.md` does not exist, stop before building and say: "Let's lock the goal first. Run `/wish` (about 5 minutes), approve the journey, then run `/one-shot` again. If you just want to put the sample app online first, run `/ship-web`." Do not write the goal yourself.
 
 Show them the journey in 3 to 5 lines and say you are starting. Do not wait for another approval; they can interrupt.
 
