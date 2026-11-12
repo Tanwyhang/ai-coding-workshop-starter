@@ -65,8 +65,12 @@ git remote rename origin upstream
 ```
 
 - **New repository:**
-  `gh repo create <owner>/<name> --private --source . --remote origin`
-  (no `--push`).
+  ```bash
+  gh repo create <owner>/<name> --private
+  git remote add origin https://github.com/<owner>/<name>.git
+  ```
+  (Do not use `--source .`; it fails in some folder layouts, such as Git
+  worktrees.)
 - **Existing repository:** `git remote add origin <url>`, then
   `git ls-remote --symref origin HEAD` to see whether it is empty and which
   branch is its default.
