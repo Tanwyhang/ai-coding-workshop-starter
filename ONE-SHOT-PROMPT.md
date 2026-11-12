@@ -2,6 +2,19 @@
 
 This is the exact prompt that reproduces the demo app in this repo from a fresh Next.js scaffold, in a single shot. It's included as a teaching example for the workshop: notice it doesn't just name a feature ("add a menu") — it specifies exact data, exact states, exact timing, and exact visual language, so there's no ambiguity for the AI to guess at.
 
+## Before writing the prompt: work backwards from the goal
+
+Start with the result rather than a list of features:
+
+1. **Goal:** What result do you want to achieve?
+2. **Evidence:** What observable result will prove you reached it?
+3. **Conditions:** What must already be true immediately before that?
+4. **First step:** Repeat question 3 until you reach something the team can build or test now.
+
+For this demo, begin with the goal: customers can place orders without staff missing them. The evidence is a confirmed order with visible kitchen progress. Immediately before that, the order must be submitted. Before submission, the customer must select an item.
+
+That backwards chain defines the smallest complete journey: **select an item, confirm the order, see kitchen progress**.
+
 ## 0. Starting point
 
 ```bash
@@ -62,6 +75,7 @@ The prompt above references 5 images that don't exist by default. Generate them 
 
 Point this out live in the workshop:
 
+- **It begins with an observable goal** and works backwards to the minimum browser journey.
 - **It names the exact data**, not "some menu items" — no ambiguity to fill in with guesses.
 - **It specifies states and transitions** (idle → cooking → ready), not just "show progress."
 - **It gives concrete timing** (1.4s per stage) instead of "animate it."

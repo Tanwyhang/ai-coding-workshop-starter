@@ -2,6 +2,9 @@
 
 ~10 min live demo. Read this on stage. Everything below has been dry-run and confirmed working.
 
+This file covers only the short pipeline demonstration. For the complete
+60-minute participant workshop, use [`FULL-REHEARSAL.md`](FULL-REHEARSAL.md).
+
 ## Before attendees arrive
 
 - [ ] Terminal open in this folder (`~/Documents/ai-coding-workshop-starter`)
@@ -11,19 +14,35 @@
 
 ## The script
 
-**1. Prompt** — say this out loud, then type it into Claude Code:
+**1. Wishful programming** — establish the outcome before showing the prompt.
+
+Say to the room:
+
+> "Before we ask Claude to build anything, we start with the goal. We want customers to add today's special without staff missing the order. What evidence would prove we reached that goal?"
+
+Take one answer, then work backwards aloud:
+
+- Evidence: the order count visibly increases.
+- Immediately before: the customer clicks "Add to Order."
+- Immediately before: the customer can see today's special.
+
+Say:
+
+> "That is wishful programming. Define the goal, decide what evidence proves it, then keep asking what must already be true. Stop when you reach something the team can build or test now. That chain becomes the scope of the prompt."
+
+**2. Prompt** — type the resulting journey into Claude Code:
 
 > "Add a 'Today's Special' menu card to the homepage — dish name, price, short description, and an 'Add to Order' button that shows a running order count when clicked."
 
 Say to the room: *"I'm not writing code — I'm describing the outcome."*
 
-**2. Generate & edit** — Claude Code proposes the change. Point at the diff before accepting.
+**3. Generate & edit** — Claude Code proposes the change. Point at the diff before accepting.
 
 Say: *"Nothing gets written until I approve it — I'm always the one in control."*
 
 Run `npm run dev`, open `localhost:3000`, click "Add to Order" once live so the room sees it work locally first.
 
-**3. Push to GitHub**
+**4. Push to GitHub**
 
 ```bash
 git add -A
@@ -33,7 +52,7 @@ git push origin main
 
 Switch to the GitHub tab, refresh, show the commit just landed.
 
-**4. Auto-deploy via Vercel** — switch to the Vercel dashboard tab.
+**5. Auto-deploy via Vercel** — switch to the Vercel dashboard tab.
 
 Say: *"I didn't run a deploy command. The push itself triggered this."*
 
@@ -49,4 +68,4 @@ Wait ~15–20s for the build to go from Building → Ready, then open the live U
 
 - Repo: https://github.com/Tanwyhang/ai-coding-workshop-starter
 - Live app: https://ai-coding-workshop-starter.vercel.app
-- Slides: `workshop-slides.pptx` (this folder)
+- Slides: `workshop-slides.pdf` at the repository root

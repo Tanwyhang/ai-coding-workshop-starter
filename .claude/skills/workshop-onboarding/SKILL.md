@@ -7,6 +7,10 @@ description: Run this the first time a participant opens this repo in Claude Cod
 
 Goal: get a participant's laptop from "just cloned this repo" to "ready to prompt, push, and deploy" with as little manual fiddling as possible. Work through these steps in order. Don't skip ahead — later steps assume earlier ones passed.
 
+Read `PROJECT-GROUND-TRUTH.md` before acting. Do not infer current login or MCP
+state from `SESSION-TRANSCRIPT.md`; check it live. Do not resume an earlier
+device-code flow unless the current status check shows it is still required.
+
 ## 1. Tools
 
 Check each of these and report versions. If any is missing, tell the participant how to install it for their OS and wait — don't try to install compilers/runtimes yourself.
@@ -77,8 +81,12 @@ Confirm `npm run verify` passes clean and the dev server serves `http://localhos
 Once everything above passes, tell the participant:
 
 - The app in `src/app/page.tsx` is the starting point — a simple two-panel food-ordering demo (menu on the left, kitchen/cooking status on the right).
-- [`ONE-SHOT-PROMPT.md`](../../ONE-SHOT-PROMPT.md) at the repo root is a fully worked example of a prompt that generates an app like this one in a single shot — they should read it before writing their own prompts, as a model for how specific a good prompt needs to be.
-- Their goal for the workshop: describe a change or a brand-new feature in a prompt, have Claude Code build it, then push to GitHub and watch it auto-deploy on Vercel — the same loop demonstrated live.
+- Want it hands-off? Run `/one-shot` with your idea. It builds, tests and fixes until the app works, and you can state your own preferences (look, language, must-haves).
+- Run `/wish` before writing the coding prompt. It works backwards from the goal to one testable browser journey.
+- [`WISHFUL-PROGRAMMING.md`](../../../WISHFUL-PROGRAMMING.md) is the participant worksheet for that method.
+- [`ONE-SHOT-PROMPT.md`](../../../ONE-SHOT-PROMPT.md) is a worked example showing how the resulting journey becomes a precise prompt.
+- Once the local journey works, run `/ship-web` to verify it, push to the team's GitHub repository, and connect Vercel Git.
+- Their goal for the workshop: work backwards from the desired outcome, have Claude Code build the smallest complete journey, then publish through GitHub and Vercel.
 
 ## Don't
 

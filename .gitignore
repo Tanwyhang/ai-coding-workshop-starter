@@ -43,3 +43,6 @@ next-env.d.ts
 # workshop materials (not app code)
 workshop-slides.pptx
 codex-slide-deck-brief.md
+
+# facilitator-only history, keep out of team repos
+SESSION-TRANSCRIPT.md
