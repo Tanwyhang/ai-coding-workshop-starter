@@ -72,11 +72,11 @@ step on their own.
 9. The tester completes the same journey on the public `*.vercel.app` URL.
 
 Run `/wish`, approve `PROJECT-GOAL.md`, then run `/one-shot`. `/one-shot` builds
-exactly the approved journey in `PROJECT-GOAL.md`. If that file is missing, it
-sends the team back to `/wish` instead of inventing a goal.
+exactly the approved journey in `PROJECT-GOAL.md`. If that file is missing, it never
+invents a goal: it verifies and browser-tests the untouched sample app instead.
 
-A team may also run `/ship-web` on the untouched sample app as a first
-deployment test, before `/wish`. The sample journey is: add an item, Confirm
+A team may also run `/one-shot` and `/ship-web` on the untouched sample app as a
+first deployment test, before `/wish`. The sample journey is: add an item, Confirm
 Order, see the kitchen stages.
 
 ## Meaning of each project skill

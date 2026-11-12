@@ -1,6 +1,6 @@
 ---
 name: one-shot
-description: One command that takes the approved journey in PROJECT-GOAL.md (from /wish) to a working, verified Next.js app on the participant's laptop, retrying and fixing until it actually works. Use when a participant runs /one-shot, or says "just build it" after /wish. Relaxed tone, optional personal preferences, stops only for logins and approvals.
+description: One command that takes the approved journey in PROJECT-GOAL.md (from /wish) to a working, verified Next.js app on the participant's laptop, retrying and fixing until it actually works. Without PROJECT-GOAL.md it verifies and browser-tests the untouched sample app instead. Use when a participant runs /one-shot, or says "just build it". Relaxed tone, optional personal preferences, stops only for logins and approvals.
 argument-hint: "[preferences, optional]"
 ---
 
@@ -62,7 +62,7 @@ Do not ask anything else. Make sensible choices yourself and mention them in the
 
 `PROJECT-GOAL.md` (written and approved during `/wish`) is the journey to build. Build exactly that; do not rewrite or re-scope it, and do not re-ask the `/wish` questions. Only update it if the participant changes their mind, and say what changed.
 
-If `PROJECT-GOAL.md` does not exist, stop before building and say: "Let's lock the goal first. Run `/wish` (about 5 minutes), approve the journey, then run `/one-shot` again. If you just want to put the sample app online first, run `/ship-web`." Do not write the goal yourself.
+If `PROJECT-GOAL.md` does not exist, do not invent a goal. Use the starter's sample app as it is: its journey is **add an item, press Confirm Order, see the kitchen stages run**. Do not change any code. Skip step 2 (preferences) and step 4 (build), run step 5 on the sample journey, and in the hand-over say: "This is the sample app, unchanged. Run `/ship-web` to put it online, or `/wish` when you want to build your own idea." 
 
 Show them the journey in 3 to 5 lines and say you are starting. Do not wait for another approval; they can interrupt.
 
